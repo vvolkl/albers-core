@@ -5,8 +5,8 @@ include_directories(
 add_executable(write write.cc)
 add_executable(read read.cc)
 
-target_link_libraries(write albers datamodel)
-target_link_libraries(read albers datamodel)
+target_link_libraries(write datamodel albers)
+target_link_libraries(read datamodel albers)
 
 install(TARGETS write
   # IMPORTANT: Add the write executable to the "export-set"

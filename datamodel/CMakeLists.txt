@@ -11,8 +11,8 @@ ROOT_GENERATE_DICTIONARY(ExampleDict datamodel/*.h albers/PyEventStore.h LINKDEF
 add_library(datamodel SHARED ${sources} ${}ExampleDict.cxx)
 target_link_libraries(datamodel albers ${ROOT_LIBRARIES} ${ROOT_COMPONENT_LIBRARIES})
 
-set_target_properties(datamodel PROPERTIES
-  PUBLIC_HEADER "${headers}")
+# set_target_properties(datamodel PROPERTIES
+#   PUBLIC_HEADER "${headers}")
 
 install(TARGETS datamodel
   # IMPORTANT: Add the albers library to the "export-set"
