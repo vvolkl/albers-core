@@ -10,10 +10,10 @@ target_link_libraries(read albers datamodel)
 
 install(TARGETS write
   # IMPORTANT: Add the write executable to the "export-set"
-  EXPORT albersTargets
+  EXPORT alberscoreTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin)
 
 install(TARGETS read
   # IMPORTANT: Add the read executable to the "export-set"
-  EXPORT albersTargets
+  EXPORT alberscoreTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin)

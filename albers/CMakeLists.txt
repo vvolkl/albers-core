@@ -11,7 +11,7 @@ set_target_properties(albers PROPERTIES
 
 install(TARGETS albers
   # IMPORTANT: Add the albers library to the "export-set"
-  EXPORT albersTargets
+  EXPORT alberscoreTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin
   LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT shlib
   PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/albers"

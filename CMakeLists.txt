@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
-project(albers CXX)
+project(alberscore CXX)
 
-set(ALBERS_MAJOR_VERSION 1)
-set(ALBERS_MINOR_VERSION 0)
-set(ALBERS_PATCH_VERSION 0)
-set(ALBERS_VERSION
-  ${ALBERS_MAJOR_VERSION}.${ALBERS_MINOR_VERSION}.${ALBERS_PATCH_VERSION})
+set(ALBERSCORE_MAJOR_VERSION 1)
+set(ALBERSCORE_MINOR_VERSION 0)
+set(ALBERSCORE_PATCH_VERSION 0)
+set(ALBERSCORE_VERSION
+  ${ALBERSCORE_MAJOR_VERSION}.${ALBERSCORE_MINOR_VERSION}.${ALBERSCORE_PATCH_VERSION})
 
 # Offer the user the choice of overriding the installation directories
 set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
@@ -15,7 +15,7 @@ set(INSTALL_INCLUDE_DIR include CACHE PATH
 if(WIN32 AND NOT CYGWIN)
   set(DEF_INSTALL_CMAKE_DIR CMake)
 else()
-  set(DEF_INSTALL_CMAKE_DIR lib/CMake/albers)
+  set(DEF_INSTALL_CMAKE_DIR lib/CMake/alberscore)
 endif()
 set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
@@ -56,37 +56,34 @@ add_subdirectory(examples)
 # ===============================
 
 # Add all targets to the build-tree export set
-export(TARGETS albers write 
-  FILE "${PROJECT_BINARY_DIR}/albersTargets.cmake")
-
-export(TARGETS albers read
-  FILE "${PROJECT_BINARY_DIR}/albersTargets.cmake")
+export(TARGETS albers write read
+  FILE "${PROJECT_BINARY_DIR}/albersCoreTargets.cmake")
 
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
-export(PACKAGE albers)
+export(PACKAGE alberscore)
 
 # Create the albersConfig.cmake and albersConfigVersion files
 file(RELATIVE_PATH REL_INCLUDE_DIR "${INSTALL_CMAKE_DIR}"
    "${INSTALL_INCLUDE_DIR}")
 # ... for the build tree
 set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
-configure_file(albersConfig.cmake.in
-  "${PROJECT_BINARY_DIR}/albersConfig.cmake" @ONLY)
+configure_file(alberscoreConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/alberscoreConfig.cmake" @ONLY)
 # ... for the install tree
-set(CONF_INCLUDE_DIRS "\${ALBERS_CMAKE_DIR}/${REL_INCLUDE_DIR}")
-configure_file(albersConfig.cmake.in
-  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/albersConfig.cmake" @ONLY)
+set(CONF_INCLUDE_DIRS "\${ALBERSCORE_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+configure_file(alberscoreConfig.cmake.in
+  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/alberscoreConfig.cmake" @ONLY)
 # ... for both
-configure_file(albersConfigVersion.cmake.in
-  "${PROJECT_BINARY_DIR}/albersConfigVersion.cmake" @ONLY)
+configure_file(alberscoreConfigVersion.cmake.in
+  "${PROJECT_BINARY_DIR}/alberscoreConfigVersion.cmake" @ONLY)
 
-# Install the albersConfig.cmake and albersConfigVersion.cmake
+# Install the alberscoreConfig.cmake and alberscoreConfigVersion.cmake
 install(FILES
-  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/albersConfig.cmake"
-  "${PROJECT_BINARY_DIR}/albersConfigVersion.cmake"
+  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/alberscoreConfig.cmake"
+  "${PROJECT_BINARY_DIR}/alberscoreConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
 
 # Install the export set for use with the install-tree
-install(EXPORT albersTargets DESTINATION
+install(EXPORT alberscoreTargets DESTINATION
   "${INSTALL_CMAKE_DIR}" COMPONENT dev)

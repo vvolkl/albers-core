@@ -4,9 +4,9 @@ include_directories(
 )
 
 file(GLOB sources src/*.cc datamodel/*.h)
-file(GLOB headers datamodel/*.h)
+file(GLOB headers datamodel/*.h albers/PyEventStore.h)
 
-ROOT_GENERATE_DICTIONARY(ExampleDict datamodel/*.h LINKDEF LinkDef.h )
+ROOT_GENERATE_DICTIONARY(ExampleDict datamodel/*.h albers/PyEventStore.h LINKDEF LinkDef.h )
 
 add_library(datamodel SHARED ${sources} ${}ExampleDict.cxx)
 target_link_libraries(datamodel albers ${ROOT_LIBRARIES} ${ROOT_COMPONENT_LIBRARIES})
