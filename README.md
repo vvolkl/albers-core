@@ -3,15 +3,17 @@ albers-core
 
 core albers library 
 
-Before compiling or using on lxplus:
+Before compiling or using on lxplus, set up your environment:
 
     source init.sh
 
-Before compiling or using on mac os: 
+Before compiling or using on mac os:
+- install ROOT and make sure your environment is correctly set to use ROOT and compile programs based on ROOT.
+- set up your environment:
 
     source init_macos.sh
 
-Compilation:
+Compile:
 
     mkdir build
     cd build
