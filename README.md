@@ -7,13 +7,13 @@ Before compiling or using on lxplus, set up your environment:
 
     source init.sh
 
-Before compiling or using on mac os:
-- install ROOT and make sure your environment is correctly set to use ROOT and compile programs based on ROOT.
-- set up your environment:
+Before compiling or using on mac os, install ROOT and make sure your environment is correctly set to use ROOT and compile programs based on ROOT. Then, set up your environment:
 
-    source init_macos.sh
-
+    source init_macos.sh 
+    
 Compile:
+
+
 
     mkdir build
     cd build
@@ -26,4 +26,3 @@ Test:
     ./install/bin/write
     ./install/bin/read
     
-
