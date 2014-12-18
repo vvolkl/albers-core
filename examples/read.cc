@@ -18,6 +18,8 @@
 #include "albers/Reader.h"
 #include "albers/Registry.h"
 
+#include <assert.h>
+
 void processEvent(albers::EventStore& store, bool verbose,
 		  albers::Reader& reader) {
 
@@ -35,6 +37,10 @@ void processEvent(albers::EventStore& store, bool verbose,
       return;
     }
   }
+
+  ParticleCollection *pcoll(nullptr);
+  bool particles_available = store.get("CollectionNotThere", pcoll);
+  assert(not particles_available);
 }
 
 
