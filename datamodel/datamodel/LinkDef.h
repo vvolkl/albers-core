@@ -19,10 +19,4 @@
 #pragma link C++ class ParticleHandle+;
 #pragma link C++ class ParticleCollection+;
 
-
-#pragma link C++ class albers::CollectionBase+;
-#pragma link C++ class albers::Registry+;
-
-#pragma link C++ class PyEventStore+;
-
 #endif

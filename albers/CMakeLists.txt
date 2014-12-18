@@ -1,9 +1,15 @@
 configure_file(config.h.in "${CMAKE_CURRENT_BINARY_DIR}/config.h" @ONLY)
 
+include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 file(GLOB sources *.cc)
 file(GLOB headers *.h)
 
-add_library(albers SHARED ${sources} ${headers} config.h.in)
+ROOT_GENERATE_DICTIONARY(AlbersDict PyEventStore.h Registry.h CollectionBase.h LINKDEF LinkDef.h )
+
+add_library(albers SHARED ${sources} ${}AlbersDict.cxx ${headers} config.h.in)
 target_link_libraries(albers ${ROOT_LIBRARIES} ${ROOT_COMPONENT_LIBRARIES})
 
 set_target_properties(albers PROPERTIES

@@ -51,12 +51,13 @@ include_directories(
 add_subdirectory(albers)
 add_subdirectory(datamodel)
 add_subdirectory(examples)
+add_subdirectory(python)
 
 # The interesting stuff goes here
 # ===============================
 
 # Add all targets to the build-tree export set
-export(TARGETS albers write read
+export(TARGETS albers albers-write albers-read
   FILE "${PROJECT_BINARY_DIR}/albersCoreTargets.cmake")
 
 # Export the package for use from the build-tree
