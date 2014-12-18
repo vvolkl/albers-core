@@ -38,7 +38,9 @@ namespace albers {
       return p->first;
     }
     TBranch* branch = m_eventTree->GetBranch(name.c_str());
-
+    if(branch == nullptr)
+      return nullptr;
+    
     CollectionBase* collection = nullptr;
     auto PODname= branch->GetClassName();
     TClass* theClass = gROOT->GetClass(PODname);
