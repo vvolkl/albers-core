@@ -23,6 +23,6 @@ Compile:
 
 Test:
 
-    ./install/bin/write
-    ./install/bin/read
+    ./install/bin/albers-write
+    ./install/bin/albers-read
     
