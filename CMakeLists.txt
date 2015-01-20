@@ -12,11 +12,12 @@ set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
 set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
-if(WIN32 AND NOT CYGWIN)
-  set(DEF_INSTALL_CMAKE_DIR CMake)
-else()
-  set(DEF_INSTALL_CMAKE_DIR lib/CMake/alberscore)
-endif()
+# if(WIN32 AND NOT CYGWIN)
+#  set(DEF_INSTALL_CMAKE_DIR CMake)
+#else()
+#  set(DEF_INSTALL_CMAKE_DIR lib/CMake/alberscore)
+#endif()
+set(DEF_INSTALL_CMAKE_DIR cmake)
 set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
 
@@ -88,3 +89,6 @@ install(FILES
 # Install the export set for use with the install-tree
 install(EXPORT alberscoreTargets DESTINATION
   "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+
+message(${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY})
+message(${INSTALL_CMAKE_DIR})
