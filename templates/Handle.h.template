@@ -19,7 +19,19 @@ class ${name}Handle {
 
 public:
 
-  ${name}Handle(){};
+  ${name}Handle() :
+  		      m_index(-1),
+		      m_containerID(0),
+		      m_container(0),
+		      m_registry(0)
+		      {}	
+
+  ${name}Handle(const ${name}Handle& other) :
+  		      m_index(other.m_index),
+		      m_containerID(other.m_containerID),
+		      m_container(other.m_container),
+		      m_registry(other.m_registry)
+		      {}	
 
 //TODO: Proper syntax to use, but ROOT doesn't handle it:  ${name}Handle() = default;
 
@@ -38,6 +50,10 @@ $relation_declarations
   
   void prepareAfterRead(albers::Registry*);   // use m_containerID to set m_container properly
 
+  int index() const {return m_index;}
+
+  int containerID() const {return m_containerID;}
+
   /// equality operator (true if both the index and the container ID are equal)
   bool operator==(const ${name}Handle& other) const {
        return (m_index==other.m_index) && (other.m_containerID==other.m_containerID);
@@ -48,9 +64,9 @@ $relation_declarations
 			 const ${name}Handle& p2 );
 
 private:
-  ${name}Handle(int index, int containerID,  std::vector<${name}>* container);
+  ${name}Handle(int index, unsigned containerID,  std::vector<${name}>* container);
   int m_index;
-  int m_containerID;
+  unsigned m_containerID;
   mutable std::vector<${name}>* m_container; //! transient
   albers::Registry* m_registry; //! transient
   //  bool _retrieveData();
