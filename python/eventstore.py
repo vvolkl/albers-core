@@ -36,7 +36,7 @@ class EventStore(object):
         # COLIN what to do with chains? 
         # if hasattr(filename, '__getitem__'):
         #     filename = filename[0] 
-        self.store = albers.PyEventStore(filename)
+        self.store = albers.PyEventStore(filename[0])
 
     def get(self, name):
         '''Returns a collection.
