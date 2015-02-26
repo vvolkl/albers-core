@@ -1,6 +1,8 @@
 albers-core
 ===========
 
+WARNING: If you have set up your environment for FCCSW, this package will not compile. Log out and log in again to clean up your environment. 
+
 core albers library 
 
 On lxplus, before compiling or using this package, set up your environment:
