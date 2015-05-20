@@ -12,7 +12,11 @@ On lxplus, before compiling or using this package, set up your environment:
 On MacOS, before compiling or using this package, install ROOT and make sure your environment is correctly set to use ROOT and compile programs based on ROOT. Then, set up your environment:
 
     source init_macos.sh 
-    
+
+On Linux (tested on Ubuntu), do:
+
+    source init_linux.sh 
+
 Compile:
 
     mkdir build
