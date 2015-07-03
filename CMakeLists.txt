@@ -59,7 +59,7 @@ add_subdirectory(python)
 
 # Add all targets to the build-tree export set
 export(TARGETS albers albers-write albers-read
-  FILE "${PROJECT_BINARY_DIR}/albersCoreTargets.cmake")
+  FILE "${PROJECT_BINARY_DIR}/alberscoreTargets.cmake")
 
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
