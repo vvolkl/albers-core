@@ -58,15 +58,19 @@ namespace albers {
     void setPODAddress(const std::string& name, T* address);
 
     std::string getNameFromID(unsigned ID) const {
-      auto result = std::find(begin(m_collectionIDs), end(m_collectionIDs), ID);
-      auto index = result - m_collectionIDs.begin();
+      std::vector<unsigned>::const_iterator result = std::find(m_collectionIDs.begin(), m_collectionIDs.end(), ID);
+      unsigned int index = result - m_collectionIDs.begin();
       return m_names[index];
     };
 
     template<typename T>
     unsigned registerPOD(T* address, const std::string& name); // returns the ID
 
-    void resetAddresses(){std::fill(m_addresses.begin(), m_addresses.end(), nullptr);};
+    void resetAddresses(){
+      for (int i=0, size=m_addresses.size();i<size;++i){
+	m_addresses[i] = 0;
+      }
+    }
 
     void setReader(Reader* reader) {m_reader = reader;};
     Reader* reader(){return m_reader;};
@@ -78,18 +82,19 @@ namespace albers {
 
   private:
     void doGetPODAddressFromID(unsigned ID, void*& address) const;
-    std::vector<void*>  m_addresses;
-    std::vector<albers::CollectionBase*>  m_collections;
+    std::vector<void*>  m_addresses; //! transient
+    std::vector<albers::CollectionBase*>  m_collections; //! transient
     std::vector<unsigned>    m_collectionIDs;
     std::vector<std::string> m_names;
     Reader*                  m_reader; //! transient
   };
 
+#ifndef __GCCXML__
 template<typename T>
   void Registry::lazyGetPODAddressFromID(unsigned ID, T*& address) const {
-  auto result = std::find(begin(m_collectionIDs), end(m_collectionIDs), ID);
+  auto result = std::find(m_collectionIDs.begin(), m_collectionIDs.end(), ID);
   if (result == end(m_collectionIDs)){
-    address = nullptr;
+    address = 0;
   } else {
     auto index = result - m_collectionIDs.begin();
     address = static_cast<T*>(m_addresses[index]);
@@ -151,10 +156,10 @@ void Registry::setPODAddress(const std::string& name, T* address){
 
 template<typename T>
 unsigned Registry::registerPOD(T* collection, const std::string& name){
-  auto bare_address = static_cast<void*>(collection->_getBuffer());
-  auto result = std::find(begin(m_addresses), end(m_addresses), bare_address);
+  auto bare_address = collection->_getRawBuffer();
+  auto result = std::find(begin(m_names), end(m_names), name);
   unsigned ID = 0;
-  if (result == m_addresses.end()) {
+  if (result == m_names.end()) {
       std::hash<std::string> hash;
       m_addresses.emplace_back(bare_address);
       m_names.emplace_back(name);
@@ -163,11 +168,12 @@ unsigned Registry::registerPOD(T* collection, const std::string& name){
       m_collectionIDs.emplace_back( ID );
       collection->setID(ID);
    } else {
-    auto index = result - m_addresses.begin();
+    auto index = result - m_names.begin();
     ID = m_collectionIDs[index];
    }
   return ID;
 }
 
+#endif
 } //namespace
 #endif
