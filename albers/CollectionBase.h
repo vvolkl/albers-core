@@ -17,6 +17,7 @@ namespace albers {
     virtual void  prepareForWrite(const Registry* registry) = 0;
     virtual void  prepareAfterRead(Registry* registry) = 0;
     virtual void  setPODsAddress(const void*) = 0;
+    virtual void  setID(const unsigned int) = 0;
     virtual void* _getRawBuffer() = 0;
     virtual ~CollectionBase(){};
     virtual void clear() = 0 ;
