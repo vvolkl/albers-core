@@ -26,6 +26,7 @@ namespace albers {
     TTree* metadatatree = (TTree*)m_file->Get("metadata");
     metadatatree->SetBranchAddress("Registry",&m_registry);
     metadatatree->GetEntry();
+    m_registry->resetAddresses();
     m_registry->setReader(this);
   }
 

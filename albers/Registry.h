@@ -70,6 +70,7 @@ namespace albers {
       for (int i=0, size=m_addresses.size();i<size;++i){
 	m_addresses[i] = 0;
       }
+      m_addresses.resize(m_names.size(),0);
     }
 
     void setReader(Reader* reader) {m_reader = reader;};
