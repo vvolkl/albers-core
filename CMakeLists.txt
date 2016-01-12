@@ -86,14 +86,6 @@ install(FILES
   "${PROJECT_BINARY_DIR}/alberscoreConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
 
-# Install the pcm dictionaries along with the libraries
-if (${ROOT_VERSION} GREATER 6)
-  install(FILES
-    "${PROJECT_BINARY_DIR}/albers/AlbersDict_rdict.pcm"
-    "${PROJECT_BINARY_DIR}/datamodel/ExampleDataModelDict_rdict.pcm"
-    DESTINATION "${INSTALL_LIB_DIR}" COMPONENT dev)
-endif()
-
 # Install the export set for use with the install-tree
 install(EXPORT alberscoreTargets DESTINATION
   "${INSTALL_CMAKE_DIR}" COMPONENT dev)

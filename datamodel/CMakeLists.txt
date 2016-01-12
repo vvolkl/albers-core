@@ -21,3 +21,9 @@ install(TARGETS exampledatamodel
   LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT shlib
   PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/datamodel"
     COMPONENT dev)
+
+if (${ROOT_VERSION} GREATER 6)
+  install(FILES
+      "${PROJECT_BINARY_DIR}/datamodel/ExampleDataModelDict_rdict.pcm"
+      DESTINATION "${INSTALL_LIB_DIR}" COMPONENT dev)
+endif()
