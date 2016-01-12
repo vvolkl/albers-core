@@ -43,10 +43,10 @@ find_package(ROOT)
 
 # set up include-directories
 include_directories(
-  "${PROJECT_SOURCE_DIR}"   
+  "${PROJECT_SOURCE_DIR}"
   "${PROJECT_BINARY_DIR}"
   "${ROOT_INCLUDE_DIR}"
-  )  
+  )
 
 # Add sub-directories
 add_subdirectory(albers)
@@ -85,6 +85,14 @@ install(FILES
   "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/alberscoreConfig.cmake"
   "${PROJECT_BINARY_DIR}/alberscoreConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+
+# Install the pcm dictionaries along with the libraries
+if (${ROOT_VERSION} GREATER 6)
+  install(FILES
+    "${PROJECT_BINARY_DIR}/albers/AlbersDict_rdict.pcm"
+    "${PROJECT_BINARY_DIR}/datamodel/ExampleDict_rdict.pcm"
+    DESTINATION "${INSTALL_LIB_DIR}" COMPONENT dev)
+endif()
 
 # Install the export set for use with the install-tree
 install(EXPORT alberscoreTargets DESTINATION
