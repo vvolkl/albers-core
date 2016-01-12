@@ -90,7 +90,7 @@ install(FILES
 if (${ROOT_VERSION} GREATER 6)
   install(FILES
     "${PROJECT_BINARY_DIR}/albers/AlbersDict_rdict.pcm"
-    "${PROJECT_BINARY_DIR}/datamodel/ExampleDict_rdict.pcm"
+    "${PROJECT_BINARY_DIR}/datamodel/ExampleDataModelDict_rdict.pcm"
     DESTINATION "${INSTALL_LIB_DIR}" COMPONENT dev)
 endif()
 
