@@ -22,3 +22,10 @@ install(TARGETS albers
   LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT shlib
   PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/albers"
     COMPONENT dev)
+
+# Install the pcm dictionaries along with the libraries
+if (${ROOT_VERSION} GREATER 6)
+  install(FILES
+    "${PROJECT_BINARY_DIR}/albers/AlbersDict_rdict.pcm"
+    DESTINATION "${INSTALL_LIB_DIR}" COMPONENT dev)
+endif()

@@ -43,10 +43,10 @@ find_package(ROOT)
 
 # set up include-directories
 include_directories(
-  "${PROJECT_SOURCE_DIR}"   
+  "${PROJECT_SOURCE_DIR}"
   "${PROJECT_BINARY_DIR}"
   "${ROOT_INCLUDE_DIR}"
-  )  
+  )
 
 # Add sub-directories
 add_subdirectory(albers)
